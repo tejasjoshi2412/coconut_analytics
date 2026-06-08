@@ -14,118 +14,15 @@ sources:
           Appointment records capturing customer bookings across vendors and locations.
           Tracks the full lifecycle of each appointment from creation through scheduling,
           serving, and completion, including status transitions and timestamps at each stage.
-        columns:
-          - name: id
-            description: Unique identifier for each appointment record.
-          - name: vendor_id
-            description: Foreign key to the vendor associated with this appointment.
-          - name: location_id
-            description: Foreign key to the location where the appointment is scheduled.
-          - name: staff_id
-            description: Identifier of the staff member assigned to the appointment. Nullable if unassigned.
-          - name: service_id
-            description: Foreign key to the service being provided in the appointment.
-          - name: started_at
-            description: Timestamp when the appointment service actually began. Nullable if not yet started.
-          - name: served_at
-            description: Timestamp when the customer was served. Nullable if not yet complete.
-          - name: finished_at
-            description: Timestamp when the appointment fully ended. Nullable if not yet finished.
-          - name: start_time
-            description: Scheduled start datetime of the appointment in local time.
-          - name: start_utc
-            description: Scheduled start datetime of the appointment converted to UTC.
-          - name: end_time
-            description: Scheduled end datetime of the appointment in local time.
-          - name: end_utc
-            description: Scheduled end datetime of the appointment converted to UTC.
-          - name: booker_id
-            description: Identifier of the user who booked the appointment. Zero if self-booked or anonymous.
-          - name: created
-            description: Timestamp when the appointment record was initially created.
-          - name: updated
-            description: Timestamp when the appointment record was last updated.
-          - name: status
-            description: Current lifecycle status of the appointment (e.g., Confirmed, Served, Cancelled).
-          - name: active
-            description: Soft-delete flag; 1 indicates the record is active, 0 indicates deleted.
 
       - name: vendor_locations_sample
         description: >
           Vendor and location reference data with operating hours for each day of the week,
           timezone information, and vendor-level attributes. Each row represents a unique
           location belonging to a vendor.
-        columns:
-          - name: vendor_id
-            description: Unique identifier for the vendor.
-          - name: vendor_state
-            description: Billing or operational state of the vendor relationship (e.g., paid, cancelled).
-          - name: is_vendor_smb
-            description: Flag indicating whether the vendor is classified as a small/medium business (1) or not (0).
-          - name: vendor_created
-            description: Timestamp when the vendor account was created.
-          - name: location_id
-            description: Unique identifier for the vendor location.
-          - name: location_timezone
-            description: IANA timezone string for the location (e.g., America/New_York).
-          - name: location_sunday_open
-            description: Opening time on Sundays. Null if the location is closed on Sundays.
-          - name: location_sunday_closed
-            description: Closing time on Sundays. Null if the location is closed on Sundays.
-          - name: location_monday_open
-            description: Opening time on Mondays. Null if closed on Mondays.
-          - name: location_monday_closed
-            description: Closing time on Mondays. Null if closed on Mondays.
-          - name: location_tuesday_open
-            description: Opening time on Tuesdays. Null if closed on Tuesdays.
-          - name: location_tuesday_closed
-            description: Closing time on Tuesdays. Null if closed on Tuesdays.
-          - name: location_wednesday_open
-            description: Opening time on Wednesdays. Null if closed on Wednesdays.
-          - name: location_wednesday_closed
-            description: Closing time on Wednesdays. Null if closed on Wednesdays.
-          - name: location_thursday_open
-            description: Opening time on Thursdays. Null if closed on Thursdays.
-          - name: location_thursday_closed
-            description: Closing time on Thursdays. Null if closed on Thursdays.
-          - name: location_friday_open
-            description: Opening time on Fridays. Null if closed on Fridays.
-          - name: location_friday_closed
-            description: Closing time on Fridays. Null if closed on Fridays.
-          - name: location_saturday_open
-            description: Opening time on Saturdays. Null if closed on Saturdays.
-          - name: location_saturday_closed
-            description: Closing time on Saturdays. Null if closed on Saturdays.
-          - name: location_is_active
-            description: Flag indicating whether the location is currently active (1) or inactive (0).
-          - name: location_created_at
-            description: Timestamp when the location record was created.
-          - name: location_updated_at
-            description: Timestamp when the location record was last updated.
 
       - name: service_sample
         description: >
           Service catalog defining the types of appointments offered by each vendor.
           Includes service duration, flexibility settings, classification, and ordering
           information used for display and scheduling logic.
-        columns:
-          - name: id
-            description: Unique identifier for each service offering.
-          - name: vendor_id
-            description: Foreign key to the vendor that offers this service.
-          - name: duration
-            description: Standard duration of the service in minutes.
-          - name: flex_time
-            description: Additional flexible time buffer in minutes allowed for the service. Zero if none.
-          - name: buffer_post
-            description: Post-appointment buffer time in minutes before the next booking can start.
-          - name: active
-            description: Flag indicating whether the service is currently active (1) or disabled (0).
-          - name: sort_order
-            description: Display ordering position for the service within the vendor's catalog.
-          - name: classification
-            description: Numeric category or type classification for the service.
-          - name: created
-            description: Timestamp when the service record was created.
-          - name: updated
-            description: Timestamp when the service record was last updated.

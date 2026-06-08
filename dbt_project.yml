@@ -12,4 +12,9 @@ clean-targets:
 
 models:
   coconut_analytics:
-    +materialized: table
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    core:
+      +materialized: table
