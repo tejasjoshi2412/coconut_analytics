@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: >
+      Date dimension table with one row per calendar day from 2010-01-01 to 2030-12-31.
+      Provides standardized date attributes, fiscal periods, and date range boundaries
+      for time-based analysis and joining to appointment dates.
+    config:
+      materialized: table
+    columns:
+      - name: date_key
+        description: Integer surrogate key in YYYYMMDD format (e.g., 20230101 for January 1, 2023).
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: Full calendar date.
+      - name: year
+        description: Calendar year (e.g., 2023).
+      - name: quarter
+        description: Calendar quarter number (1–4).
+      - name: quarter_label
+        description: Human-readable quarter label (e.g., Q1, Q2).
+      - name: month
+        description: Calendar month number (1–12).
+      - name: month_name
+        description: Full month name (e.g., January, February).
+      - name: month_label
+        description: Compound month label (e.g., January 2023).
+      - name: day_of_year
+        description: Numeric day of the year (1–366).
+      - name: day_of_month
+        description: Numeric day of the month (1–31).
+      - name: day_of_week
+        description: Numeric day of the week (0 = Sunday, 6 = Saturday).
+      - name: day_of_week_name
+        description: Full day of week name.
+      - name: day_name
+        description: Abbreviated day name (e.g., Mon, Tue).
+      - name: week_of_year
+        description: ISO week number (1–53).
+      - name: week_start_date
+        description: Date of the Monday (start) of the week containing this date.
+      - name: week_end_date
+        description: Date of the Sunday (end) of the week containing this date.
+      - name: month_start_date
+        description: First day of the month.
+      - name: month_end_date
+        description: Last day of the month.
+      - name: quarter_start_date
+        description: First day of the quarter.
+      - name: quarter_end_date
+        description: Last day of the quarter.
+      - name: year_start_date
+        description: First day of the year (January 1).
+      - name: year_end_date
+        description: Last day of the year (December 31).
+      - name: is_weekend
+        description: Flag indicating if the date falls on a weekend (Saturday or Sunday).
+      - name: is_business_day
+        description: Flag indicating if the date is a weekday (Monday–Friday).
